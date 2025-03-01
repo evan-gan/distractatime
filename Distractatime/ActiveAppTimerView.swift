@@ -10,16 +10,25 @@ import AppKit
 
 struct ActiveAppTimerView: View {
     @State private var currentApp: String = "Unknown"
-    @State private var elapsedTime: TimeInterval = 0
-    @State private var lastActiveTime: Date? = nil
+    @State private var lastActiveTime: Date? = Date() // Ensures tracking starts immediately
+    @State private var appUsage: [String: TimeInterval] = [:]  // Dictionary to track usage
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         VStack {
-            Text("Active App: \(currentApp)")
+            Text("Active Apps Usage")
                 .font(.headline)
-            Text("Time Spent: \(formattedTime(elapsedTime))")
-                .font(.subheadline)
+                .padding(.bottom, 5)
+
+            List(sortedAppUsage(), id: \.0) { app, time in
+                HStack {
+                    Text(app)
+                        .fontWeight(.bold)
+                    Spacer()
+                    Text(formattedTime(time))
+                        .foregroundColor(.gray)
+                }
+            }
         }
         .onReceive(timer) { _ in
             updateActiveApp()
@@ -27,17 +36,22 @@ struct ActiveAppTimerView: View {
     }
 
     private func updateActiveApp() {
+        let now = Date()
         if let activeApp = NSWorkspace.shared.frontmostApplication?.localizedName {
-            if activeApp != currentApp {
-                // If app changes, reset timer
+                // Store previous app time before switching
+                if let lastTime = lastActiveTime {
+                    let elapsed = now.timeIntervalSince(lastTime)
+                    appUsage[currentApp, default: 0] += elapsed
+                }
+
+                // Update current app and start tracking
                 currentApp = activeApp
-                elapsedTime = 0
-                lastActiveTime = Date()
-            } else if let startTime = lastActiveTime {
-                // Update elapsed time
-                elapsedTime = Date().timeIntervalSince(startTime)
-            }
+                lastActiveTime = now
         }
+    }
+
+    private func sortedAppUsage() -> [(String, TimeInterval)] {
+        return appUsage.sorted { $0.value > $1.value }  // Sort by most used
     }
 
     private func formattedTime(_ seconds: TimeInterval) -> String {
