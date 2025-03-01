@@ -8,15 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showVideo = false
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
-
-            // Add the active app timer component
-            ActiveAppTimerView()
+            Button("Play Fullscreen Video") {
+                       showVideo = true
+                   }
+                   .font(.title)
+                   .padding()
+                   .sheet(isPresented: $showVideo) {
+                       FullScreenVideoView(isPresented: $showVideo)
+                           .frame(maxWidth: .infinity, maxHeight: .infinity)
+                           .background(Color.black)
+                   }
         }
         .padding()
     }
