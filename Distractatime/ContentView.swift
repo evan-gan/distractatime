@@ -14,6 +14,9 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
+
+            // Add the active app timer component
+            ActiveAppTimerView()
         }
         .padding()
     }
