@@ -1,23 +1,26 @@
-//
-//  ContentView.swift
-//  Distractatime
-//
-//  Created by Evan Gan on 3/1/25.
-//
-
 import SwiftUI
 import Cocoa
 
 struct ContentView: View {
     @State private var showVideo = false
     private let windowManager = WindowManager()
+    
+    // State variables for random colors
+    @State private var backgroundColor: Color = .white
+    @State private var textColor: Color = .black
+
+    // Function to generate random color
+    func randomColor() -> Color {
+        return Color(
+            red: Double.random(in: 0...1),
+            green: Double.random(in: 0...1),
+            blue: Double.random(in: 0...1)
+        )
+    }
 
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            // Using Comic Sans for the text
             ActiveAppTimerView(distractions: [
                 "Xcode": [
                     10: {
@@ -34,13 +37,15 @@ struct ContentView: View {
                     }
                 ]
             ])
-            
-
         }
         .padding()
+        .background(backgroundColor)  // Apply random background color
+        .foregroundColor(textColor)   // Apply random text color
+        .onAppear {
+            // Set random colors when the view appears
+            backgroundColor = randomColor()
+            textColor = randomColor()
+        }
+        .font(.custom("Comic Sans MS", size: 16))  // Set font to Comic Sans MS
     }
 }
-
-//#Preview {
-//    ContentView()
-//}
