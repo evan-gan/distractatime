@@ -56,10 +56,14 @@ struct ActiveAppTimerView: View {
                 currentApp = activeApp
                 lastActiveTime = now
             
+            let lambdaCallFrequency: Int = 3
+            
             for distractionApp in distractions.keys {
                 if let distractionTime = distractions[distractionApp] {
                     for (duration, lambda) in distractionTime where (Int(duration) <= Int(appUsage[currentApp] ?? 0)) {
-                        lambda()
+                        if ((Int(appUsage[currentApp] ?? 0) % lambdaCallFrequency) == 0) {
+                            lambda()
+                        }
                     }
                 }
             }
