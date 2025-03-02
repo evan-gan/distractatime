@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D8C3EC4C2D7401820041394B /* ORSSerial in Frameworks */ = {isa = PBXBuildFile; productRef = D8C3EC4B2D7401820041394B /* ORSSerial */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		4224E1E22D73A5C20047F5C8 /* Distractatime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Distractatime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8C3EC4C2D7401820041394B /* ORSSerial in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = Distractatime;
 			packageProductDependencies = (
+				D8C3EC4B2D7401820041394B /* ORSSerial */,
 			);
 			productName = Distractatime;
 			productReference = 4224E1E22D73A5C20047F5C8 /* Distractatime.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 4224E1D92D73A5C20047F5C8;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D8C3EC4A2D7401820041394B /* XCRemoteSwiftPackageReference "ORSSerialPort" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4224E1E32D73A5C20047F5C8 /* Products */;
 			projectDirPath = "";
@@ -315,6 +324,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D8C3EC4A2D7401820041394B /* XCRemoteSwiftPackageReference "ORSSerialPort" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/armadsen/ORSSerialPort";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D8C3EC4B2D7401820041394B /* ORSSerial */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D8C3EC4A2D7401820041394B /* XCRemoteSwiftPackageReference "ORSSerialPort" */;
+			productName = ORSSerial;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4224E1DA2D73A5C20047F5C8 /* Project object */;
 }
