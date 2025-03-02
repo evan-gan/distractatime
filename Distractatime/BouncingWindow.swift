@@ -1,10 +1,3 @@
-//
-//  BouncingWindow.swift
-//  Distractatime
-//
-//  Created by Evan Gan on 3/1/25.
-//
-
 import Cocoa
 
 class BouncingWindow: NSWindow {
@@ -43,12 +36,27 @@ class BouncingWindow: NSWindow {
 
         self.contentView = contentView
         startBouncing()
+//        scheduleSelfDestruction()
     }
 
     func startBouncing() {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
             self.updatePosition()
         }
+    }
+
+    func scheduleSelfDestruction() {
+        let destructionTime = 3.0 + Double.random(in: 0...5)
+        Timer.scheduledTimer(withTimeInterval: destructionTime, repeats: false) { [weak self] _ in
+            self?.close() // Safe call on weak self
+        }
+    }
+
+    override func close() {
+        timer?.invalidate() // Ensure timer stops before deallocating
+        timer = nil
+        super.close()
     }
 
     func updatePosition() {
@@ -75,8 +83,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         spawnWindow()
 
-        windowSpawnTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { _ in
-            self.spawnWindow()
+        windowSpawnTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self] _ in
+            self?.spawnWindow() // Ensure safe access
         }
     }
 
@@ -84,8 +92,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         _ = BouncingWindow()
     }
 }
-
-//let app = NSApplication.shared
-//let delegate = AppDelegate()
-//app.delegate = delegate
-//app.run()

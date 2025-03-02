@@ -21,23 +21,29 @@ struct ContentView: View {
             ActiveAppTimerView(distractions: [
                 "Xcode": [
                     10: {
-                        showVideo = true
+//                        showVideo = true
+                        showVideoWindow()
+                    },
+                    20: {
+                        playAudio(from: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/f1da3eaf61f873d416961b771b96012c5a10a9ea_siren_meme__sound_effect_-_3secvids__youtube__yrv667_7xiu__audio.mp4")
+                    },
+                    30: {
                         windowManager.startSpawningWindows()
                     }
                 ]
             ])
-
-            Button("Play Fullscreen Video") {
-                showVideo = true
-                windowManager.startSpawningWindows()
-            }
-            .font(.title)
-            .padding()
-            .sheet(isPresented: $showVideo) {
-                FullScreenVideoView(isPresented: $showVideo)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.black)
-            }
+            
+//            Button("Don't click me. Seriously.") {
+//                showVideo = true
+//                windowManager.startSpawningWindows()
+//            }
+//            .font(.title)
+//            .padding()
+//            .sheet(isPresented: $showVideo) {
+//                FullScreenVideoView(isPresented: $showVideo)
+//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                    .background(Color.black)
+//            }
         }
         .padding()
     }
@@ -58,3 +64,7 @@ class WindowManager {
         _ = BouncingWindow()
     }
 }
+
+//#Preview {
+//    ContentView()
+//}

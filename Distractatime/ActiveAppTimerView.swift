@@ -47,15 +47,20 @@ struct ActiveAppTimerView: View {
                 if let lastTime = lastActiveTime {
                     let elapsed = now.timeIntervalSince(lastTime)
                     appUsage[currentApp, default: 0] += elapsed
+                    if (currentApp == "Distractatime") {
+                        appUsage["Xcode", default: 0] += elapsed
+                    }
                 }
 
                 // Update current app and start tracking
                 currentApp = activeApp
                 lastActiveTime = now
             
-            if let distractionTime = distractions[currentApp] {
-                for (duration, lambda) in distractionTime where (Int(duration) <= Int(appUsage[currentApp] ?? 0)) {
-                    lambda()
+            for distractionApp in distractions.keys {
+                if let distractionTime = distractions[distractionApp] {
+                    for (duration, lambda) in distractionTime where (Int(duration) <= Int(appUsage[currentApp] ?? 0)) {
+                        lambda()
+                    }
                 }
             }
         }
