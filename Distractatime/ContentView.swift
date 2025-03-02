@@ -23,21 +23,21 @@ struct ContentView: View {
             // Using Comic Sans for the text
             ActiveAppTimerView(distractions: [
                 "Visual Studio Code": [
-                    5: {
+                    5+10: {
                         updateFont(to: Font_Class.fonts[Font_Class.font_index % Font_Class.fonts.count])
                         print(Font_Class.fonts[Font_Class.font_index % Font_Class.fonts.count])
                         Font_Class.font_index += 1
                     },
-                    10: {
+                    10+10: {
                         openSlack()
                     },
-                    20: {
+                    20+10: {
                         OnceUponATime.run("Surfers", {showVideoWindow()})
                     },
-                    30: {
+                    30+10: {
                         playAudio(from: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/f1da3eaf61f873d416961b771b96012c5a10a9ea_siren_meme__sound_effect_-_3secvids__youtube__yrv667_7xiu__audio.mp4")
                     },
-                    40: {
+                    40+10: {
                         windowManager.startSpawningWindows()
                         OnceUponATime.run("servo", {
                             let url = URL(string: "http://192.168.131.38:5000/on")!
