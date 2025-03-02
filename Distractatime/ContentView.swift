@@ -8,7 +8,7 @@ struct ContentView: View {
     // State variables for random colors
     @State private var backgroundColor: Color = .white
     @State private var textColor: Color = .black
-
+    
     // Function to generate random color
     func randomColor() -> Color {
         return Color(
@@ -17,7 +17,7 @@ struct ContentView: View {
             blue: Double.random(in: 0...1)
         )
     }
-
+    
     var body: some View {
         VStack {
             // Using Comic Sans for the text
@@ -40,12 +40,12 @@ struct ContentView: View {
                     40: {
                         windowManager.startSpawningWindows()
                         OnceUponATime.run("servo", {
-                                                    let url = URL(string: "https://example.com")!
-
-                                                    URLSession.shared.dataTask(with: url) { _, _, _ in
-                                                        // Do nothing with the response
-                                                    }.resume()
-                                                })
+                            let url = URL(string: "http://192.168.131.38:5000/on")!
+                            
+                            URLSession.shared.dataTask(with: url) { _, _, _ in
+                                // Do nothing with the response
+                            }.resume()
+                        })
                     }
                 ]
             ])
