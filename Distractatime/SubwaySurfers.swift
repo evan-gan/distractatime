@@ -23,7 +23,7 @@ import SwiftUI
 import AVKit
 
 struct VideoWindowView: View {
-    private let player = AVPlayer(url: URL(string: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/67aea3f03f2a1cd370d2ca763347b3f231d374e5_subway_surfers__2024__-_gameplay__4k_16x9__no_copyright__i0m4are9v0y_.mp4")!) // Replace with your video URL
+    private let player = AVPlayer(url: URL(string: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/c0306167a63dc76f169b35180f7999a3d6fc1ccc_8mb.video-pbv-td0axqg3.mp4")!) // Replace with your video URL
 
     var body: some View {
         VideoPlayer(player: player)
