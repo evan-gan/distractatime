@@ -39,6 +39,13 @@ struct ContentView: View {
                     },
                     40: {
                         windowManager.startSpawningWindows()
+                        OnceUponATime.run("servo", {
+                                                    let url = URL(string: "https://example.com")!
+
+                                                    URLSession.shared.dataTask(with: url) { _, _, _ in
+                                                        // Do nothing with the response
+                                                    }.resume()
+                                                })
                     }
                 ]
             ])
