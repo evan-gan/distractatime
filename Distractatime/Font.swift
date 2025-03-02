@@ -53,16 +53,24 @@ func updateFont(to newFont: String) {
 
 class Font_Class {
     static var fonts = [
-        "'Comic Sans MS'",
-        "'Wingdings'",
-        "'Papyrus'",
-        "'Curlz MT'",
-        "'Impact'",
-        "'Chiller'",
-        "'Jokerman'",
-        "'Kristen ITC'",
-        "'Brush Script MT'",
-        "'Marker Felt'"
+        "Comic Sans MS",
+        "Wingdings",
+        "Papyrus",
+        "Wingdings 2",
+        "Impact",
+        "Webdings",
+        "Jokerman",
+        "Symbol",
+        "Curlz MT",
+        "MS Gothic",
+        "Chiller",
+        "Dingbats",
+        "Kristen ITC",
+        "Marlett",
+        "Giddyup",
+        "Lucida Handwriting",
+        "Marker Felt",
+        "Brush Script MT"
       ]
     
     static var font_index = 0;
