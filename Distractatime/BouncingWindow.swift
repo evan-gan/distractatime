@@ -92,3 +92,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         _ = BouncingWindow()
     }
 }
+
+// Manages multiple bouncing windows
+class WindowManager {
+    private var windowSpawnTimer: Timer?
+    
+    func startSpawningWindows() {
+        spawnWindow()
+        windowSpawnTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { _ in
+            self.spawnWindow()
+        }
+    }
+    
+    private func spawnWindow() {
+        _ = BouncingWindow()
+    }
+}

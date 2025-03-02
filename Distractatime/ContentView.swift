@@ -21,7 +21,6 @@ struct ContentView: View {
             ActiveAppTimerView(distractions: [
                 "Xcode": [
                     10: {
-//                        showVideo = true
                         showVideoWindow()
                     },
                     20: {
@@ -33,35 +32,9 @@ struct ContentView: View {
                 ]
             ])
             
-//            Button("Don't click me. Seriously.") {
-//                showVideo = true
-//                windowManager.startSpawningWindows()
-//            }
-//            .font(.title)
-//            .padding()
-//            .sheet(isPresented: $showVideo) {
-//                FullScreenVideoView(isPresented: $showVideo)
-//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                    .background(Color.black)
-//            }
+
         }
         .padding()
-    }
-}
-
-// Manages multiple bouncing windows
-class WindowManager {
-    private var windowSpawnTimer: Timer?
-    
-    func startSpawningWindows() {
-        spawnWindow()
-        windowSpawnTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { _ in
-            self.spawnWindow()
-        }
-    }
-    
-    private func spawnWindow() {
-        _ = BouncingWindow()
     }
 }
 
