@@ -10,7 +10,7 @@ import AppKit
 func openSlack() {
     if !Slack.openedConfessions {
         if ((NSApp.keyWindow != nil ? NSApp.keyWindow!.title : "") != "Slack") {
-            NSWorkspace.shared.open(URL(string:"https://hackclub.slack.com/archives/CNMU9L92Q")!)
+            NSWorkspace.shared.open(URL(string:"https://hackclub.slack.com/messages/CNMU9L92Q")!)
         }
         Slack.openedConfessions = true
     }
@@ -26,5 +26,3 @@ func openSlack() {
 class Slack {
     static var openedConfessions = false
 }
-
-
