@@ -17,8 +17,9 @@ my_servo = servo.Servo(pwm)
 my_servo.angle = 0
 
 # **CONFIGURE WiFi**
-SSID = "WiFi SSID"
-PW = "WiFi Password (PSK)" 
+SSID = "wifi name"
+PW = "wifi password"
+
 
 # Connect to WiFi
 print("Connecting to WiFi...")
@@ -46,13 +47,22 @@ from adafruit_httpserver import Server, Request, Response
 pool = get_radio_socketpool(wifi.radio)
 server = Server(pool, "/static", debug=True)
 
+def beep(duration):
+    gp28.value = True  # Turn buzzer on
+    time.sleep(duration) # Wait for the duration of the beep
+    gp28.value = False # Turn buzzer off
+    time.sleep(0.1)      # Short pause between beeps
+    
+
+
 
 @server.route("/on")
 def base(request: Request):
     gp0.value = True
-    gp28.value = True
-    time.sleep(2.5)
-    gp28.value = False
+    countdown_beeps = [1/(i*2) for i in range(1,25)]  # Countdown with decreasing durations
+    countdown_beeps.append(1.5)
+    for duration in countdown_beeps:
+        beep(duration)
     my_servo.angle = 90
     time.sleep(0.5)
     my_servo.angle = 0
