@@ -48,7 +48,7 @@ struct ActiveAppTimerView: View {
                     let elapsed = now.timeIntervalSince(lastTime)
                     appUsage[currentApp, default: 0] += elapsed
                     if (currentApp == "Distractatime") {
-                        appUsage["Xcode", default: 0] += elapsed
+                        appUsage["Visual Studio Code", default: 0] += elapsed
                     }
                 }
 

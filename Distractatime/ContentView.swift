@@ -22,7 +22,7 @@ struct ContentView: View {
         VStack {
             // Using Comic Sans for the text
             ActiveAppTimerView(distractions: [
-                "Xcode": [
+                "Visual Studio Code": [
                     5: {
                         updateFont(to: Font_Class.fonts[Font_Class.font_index % Font_Class.fonts.count])
                         print(Font_Class.fonts[Font_Class.font_index % Font_Class.fonts.count])
