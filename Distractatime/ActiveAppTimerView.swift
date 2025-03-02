@@ -13,7 +13,12 @@ struct ActiveAppTimerView: View {
     @State private var lastActiveTime: Date? = Date() // Ensures tracking starts immediately
     @State private var appUsage: [String: TimeInterval] = [:]  // Dictionary to track usage
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private let distractions: [String:[Int: () -> ()]]
 
+    init(distractions: [String:[Int: () -> ()]]) {
+        self.distractions = distractions
+    }
+    
     var body: some View {
         VStack {
             Text("Active Apps Usage")
@@ -47,6 +52,12 @@ struct ActiveAppTimerView: View {
                 // Update current app and start tracking
                 currentApp = activeApp
                 lastActiveTime = now
+            
+            if let distractionTime = distractions[currentApp] {
+                for (duration, lambda) in distractionTime where (Int(duration) <= Int(appUsage[currentApp] ?? 0)) {
+                    lambda()
+                }
+            }
         }
     }
 
