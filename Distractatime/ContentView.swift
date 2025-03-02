@@ -23,6 +23,11 @@ struct ContentView: View {
             // Using Comic Sans for the text
             ActiveAppTimerView(distractions: [
                 "Xcode": [
+                    5: {
+                        updateFont(to: Font_Class.fonts[Font_Class.font_index % Font_Class.fonts.count])
+                        print(Font_Class.fonts[Font_Class.font_index % Font_Class.fonts.count])
+                        Font_Class.font_index += 1
+                    },
                     10: {
                         openSlack()
                     },
