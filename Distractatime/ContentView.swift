@@ -26,10 +26,12 @@ struct ContentView: View {
                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                            .background(Color.black)
                    }
+            
         }
         .padding()
     }
 }
+
 
 #Preview {
     ContentView()
