@@ -16,6 +16,12 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
+            ActiveAppTimerView(distractions: [
+                "Xcode": [  // For Xcode
+                    10 : { doFraud("e") } // Wrap the function call in a closure
+                ]
+            ])
+
             Button("Play Fullscreen Video") {
                        showVideo = true
                    }
@@ -29,6 +35,10 @@ struct ContentView: View {
             
         }
         .padding()
+    }
+    
+    private func doFraud(_ fraud: String) {
+        print(fraud)
     }
 }
 
