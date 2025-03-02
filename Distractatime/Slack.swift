@@ -8,5 +8,23 @@
 import AppKit
 
 func openSlack() {
-    NSWorkspace.shared.open(URL(string:"https://hackclub.slack.com/archives/CNMU9L92Q")!)
+    if !Slack.openedConfessions {
+        if ((NSApp.keyWindow != nil ? NSApp.keyWindow!.title : "") != "Slack") {
+            NSWorkspace.shared.open(URL(string:"https://hackclub.slack.com/archives/CNMU9L92Q")!)
+        }
+        Slack.openedConfessions = true
+    }
+    else {
+        let apps = NSWorkspace.shared.runningApplications
+        for app in apps where app.localizedName == "Slack" {
+            app.activate()
+            return
+        }
+    }
 }
+
+class Slack {
+    static var openedConfessions = false
+}
+
+

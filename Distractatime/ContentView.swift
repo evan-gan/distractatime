@@ -21,7 +21,7 @@ struct ContentView: View {
             ActiveAppTimerView(distractions: [
                 "Xcode": [
                     10: {
-                       openSlack()
+                        openSlack()
                     },
                     20: {
                         showVideoWindow()
